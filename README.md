@@ -19,30 +19,33 @@ To find out, I'm deploying a custom honeypot stack on AWS across several regions
 
 ## Architecture
 
-
-          ATTACKERS
-              |
-              v
-+----------------------------+
-|  AWS honeypots (5 regions) |
-|  T-Pot + custom WC lures   |
-+-------------+--------------+
-              |
-              v
-        +------------+
-        |  S3 logs   |
-        +-----+------+
-              |
-              v
-        +------------+
-        | PostgreSQL |
-        +-----+------+
-              |
-              v
-        +------------+
-        | Dashboard  |
-        | PHP + JS   |
-        +------------+
+```
+            attackers (Phase 2)
+            simulated attacks (Phase 1)
+                |
+                v
+    +------------------------------+
+    |  Honeypots                   |
+    |  Cowrie + Dionaea            |
+    |  (Local VMs / AWS Phase 2)   |
+    +-------------+----------------+
+                  |
+                  v
+            +------------+
+            | Log files  |
+            +-----+------+
+                  |
+                  v
+            +------------+
+            | PostgreSQL |
+            +-----+------+
+                  |
+                  v
+            +------------+
+            |  Dashboard |
+            |  PHP + JS  |
+            +------------+
+```
 
 ## Stack
 
